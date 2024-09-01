@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -24,6 +23,11 @@ public class UserController {
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
+    @GetMapping("{username}")
+    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+        userRepository.findByUsername(username);
+        return ResponseEntity.ok(userRepository.findByUsername(username));
+    }
     @PutMapping("/{username}")
     public ResponseEntity<?> updateUser(@RequestBody User user,@PathVariable String username) {
         User userInDB = userService.findUserByUsername(username);
@@ -35,4 +39,5 @@ public class UserController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }

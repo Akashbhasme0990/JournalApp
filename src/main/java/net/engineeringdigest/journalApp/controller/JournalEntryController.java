@@ -1,6 +1,5 @@
 package net.engineeringdigest.journalApp.controller;
 import net.engineeringdigest.journalApp.entity.JournalEntry;
-import net.engineeringdigest.journalApp.repository.JournalEntryRepository;
 import net.engineeringdigest.journalApp.service.JournalEntryService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,6 @@ import java.util.*;
 public class JournalEntryController {
     @Autowired
     private JournalEntryService journalEntryService;
-    @Autowired
-    private JournalEntryRepository journalEntryRepository;
 
 
     @GetMapping("/JournalEntries")
@@ -39,13 +36,13 @@ public class JournalEntryController {
 
     @GetMapping("/JournalEntries/{id}")
     public ResponseEntity<JournalEntry> getJournalEntry(@PathVariable ObjectId id) {
-       Optional<JournalEntry> journalEntry = journalEntryRepository.findById(id);
+       Optional<JournalEntry> journalEntry = journalEntryService.findJournalEntryById(id);
         return journalEntry.map(entry -> new ResponseEntity<>(entry, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/JournalEntries/{id}")
     public ResponseEntity<?> deleteJournalEntry(@PathVariable ObjectId id) {
-        journalEntryRepository.deleteById(id);
+        journalEntryService.deleteJournalEntryById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
@@ -53,7 +50,7 @@ public class JournalEntryController {
     public ResponseEntity<?>updateJournalEntry(@PathVariable ObjectId id, @RequestBody JournalEntry newJournalEntry) {
         JournalEntry old=journalEntryService.findJournalEntryById(id).orElse(null);
         if(old != null){
-            old.setTitle(newJournalEntry.getTitle()!=null&& !newJournalEntry.getTitle().isEmpty() ? newJournalEntry.getTitle():old.getTitle());
+            old.setTitle(!newJournalEntry.getTitle().isEmpty() ? newJournalEntry.getTitle():old.getTitle());
             old.setContent(newJournalEntry.getContent()!=null&& !newJournalEntry.getContent().isEmpty() ? newJournalEntry.getContent():old.getContent());
             journalEntryService.saveEntry(old);
             return new ResponseEntity<>(old,HttpStatus.OK);

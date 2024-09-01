@@ -12,7 +12,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collation = "journal_entries")
+@Document(collection = "JournalEntries")
 public class JournalEntry {
     @Id
     private ObjectId id;

@@ -28,7 +28,7 @@ public class JournalEntryController {
         }
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
-
+    
     @PostMapping("/{Username}")
     public ResponseEntity<JournalEntry> createJournalEntry(@RequestBody JournalEntry journalEntry,@PathVariable String Username) {
         try {

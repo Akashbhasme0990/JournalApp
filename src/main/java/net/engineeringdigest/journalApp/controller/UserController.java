@@ -21,7 +21,8 @@ public class UserController {
     }
     @PostMapping
     public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+        userService.saveEntry(user);
+        return user;
     }
     @GetMapping("{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username) {

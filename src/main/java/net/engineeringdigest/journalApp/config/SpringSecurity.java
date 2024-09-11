@@ -17,7 +17,11 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/JournalEntries","/user/**").authenticated().anyRequest().permitAll().and().httpBasic();
+        http.authorizeRequests()
+                .antMatchers("/JournalEntries/**","/user/**")
+                .authenticated()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().permitAll().and().httpBasic();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable();
     }
     @Override

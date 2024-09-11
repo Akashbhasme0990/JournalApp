@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://akashbhasme09:Akash%402001@cluster0.lxusx.mongodb.net/?retryWrites=true&w=majority&appName=cluster0
+      database: journaldb
+      auto-index-creation: true
+
+server:
+  port: 6060

@@ -12,3 +12,6 @@ logging:
     net:
       engineeringdigest:
         journalApp: DEBUG
+weather:
+  api:
+    key: e307e42b908583469225a554f97adb7f

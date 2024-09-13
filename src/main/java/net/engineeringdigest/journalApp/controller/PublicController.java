@@ -2,6 +2,7 @@ package net.engineeringdigest.journalApp.controller;
 import net.engineeringdigest.journalApp.entity.User;
 import net.engineeringdigest.journalApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +16,10 @@ public class PublicController {
         return userService.findAll();
     }
     @PostMapping()
-    public void createUser(@RequestBody User user) {
-        userService.saveUserEntry(user);
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        if(userService.saveUserEntry(user)){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().build();
     }
 }

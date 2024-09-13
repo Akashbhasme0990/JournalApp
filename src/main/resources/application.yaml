@@ -7,3 +7,8 @@ spring:
 
 server:
   port: 6060
+logging:
+  level:
+    net:
+      engineeringdigest:
+        journalApp: DEBUG

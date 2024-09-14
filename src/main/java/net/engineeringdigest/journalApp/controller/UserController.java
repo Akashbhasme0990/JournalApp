@@ -1,7 +1,9 @@
 package net.engineeringdigest.journalApp.controller;
 import net.engineeringdigest.journalApp.apiResponse.WeatherResponse;
+import net.engineeringdigest.journalApp.cache.AppCache;
 import net.engineeringdigest.journalApp.entity.User;
 import net.engineeringdigest.journalApp.repository.UserRepository;
+import net.engineeringdigest.journalApp.repository.WeatherRepository;
 import net.engineeringdigest.journalApp.service.UserService;
 import net.engineeringdigest.journalApp.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,7 @@ public class UserController {
 
     @Autowired
     private WeatherService weatherService;
+
 
     @PutMapping()
     public ResponseEntity<?> updateUser(@RequestBody User user) {
@@ -54,5 +57,6 @@ public class UserController {
 
         return new ResponseEntity<>( greeting , HttpStatus.OK );
     }
+
 
 }

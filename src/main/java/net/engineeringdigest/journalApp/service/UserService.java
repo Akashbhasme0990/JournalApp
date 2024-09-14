@@ -19,7 +19,6 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
-//    private static  final Logger logger = LoggerFactory.getLogger(UserService.class);
     public List<User> findAll() {
         return userRepository.findAll();
     }

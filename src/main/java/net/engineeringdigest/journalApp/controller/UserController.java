@@ -3,6 +3,7 @@ import net.engineeringdigest.journalApp.apiResponse.WeatherResponse;
 import net.engineeringdigest.journalApp.cache.AppCache;
 import net.engineeringdigest.journalApp.entity.User;
 import net.engineeringdigest.journalApp.repository.UserRepository;
+import net.engineeringdigest.journalApp.repository.UserRepositoryImpl;
 import net.engineeringdigest.journalApp.repository.WeatherRepository;
 import net.engineeringdigest.journalApp.service.UserService;
 import net.engineeringdigest.journalApp.service.WeatherService;
@@ -13,6 +14,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -27,6 +30,8 @@ public class UserController {
 
     @Autowired
     private WeatherService weatherService;
+    @Autowired
+    private UserRepositoryImpl userRepositoryImpl;
 
 
     @PutMapping()
@@ -56,6 +61,14 @@ public class UserController {
         }
 
         return new ResponseEntity<>( greeting , HttpStatus.OK );
+    }
+    @GetMapping("/getSentimentUsers")
+    public ResponseEntity<?> getUsersForSentimentAnalysis() {
+        List<User> sentUsers= userRepositoryImpl.getUsersForSA();
+        if (sentUsers != null && !sentUsers.isEmpty()) {
+            return ResponseEntity.ok(sentUsers);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 

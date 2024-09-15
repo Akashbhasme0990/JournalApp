@@ -4,6 +4,17 @@ spring:
       uri: mongodb+srv://akashbhasme09:Akash%402001@cluster0.lxusx.mongodb.net/?retryWrites=true&w=majority&appName=cluster0
       database: journaldb
       auto-index-creation: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: akashbhasme011@gmail.com
+    password: wtyi tsms nnjk pwwk
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 server:
   port: 6060

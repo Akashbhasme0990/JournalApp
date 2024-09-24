@@ -1,10 +1,8 @@
 package net.engineeringdigest.journalApp.cache;
-
 import net.engineeringdigest.journalApp.entity.ConfigJournalAppEntity;
 import net.engineeringdigest.journalApp.repository.WeatherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;

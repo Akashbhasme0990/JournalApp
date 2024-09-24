@@ -4,9 +4,7 @@ spring:
       uri: mongodb+srv://akashbhasme09:Akash%402001@cluster0.lxusx.mongodb.net/?retryWrites=true&w=majority&appName=cluster0
       database: journaldb
       auto-index-creation: true
-
   redis:
-#    uri: redis-cli -u redis://default:9iKXbUlTwFqqtPNCbZjX8acio1WU53jm@redis-17434.c212.ap-south-1-1.ec2.redns.redis-cloud.com:17434
     host: redis-17434.c212.ap-south-1-1.ec2.redns.redis-cloud.com
     port: 17434
     password: 9iKXbUlTwFqqtPNCbZjX8acio1WU53jm

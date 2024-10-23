@@ -6,6 +6,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
+import javax.swing.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +44,7 @@ public class JwtUtil {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, username);
     }
+
 
     private String createToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()

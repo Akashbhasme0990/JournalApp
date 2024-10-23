@@ -5,9 +5,8 @@ spring:
       database: journaldb
       auto-index-creation: true
   redis:
-    host: redis-17434.c212.ap-south-1-1.ec2.redns.redis-cloud.com
-    port: 17434
-    password: 9iKXbUlTwFqqtPNCbZjX8acio1WU53jm
+    host: localhost
+    port: 6379
 
   mail:
     host: smtp.gmail.com

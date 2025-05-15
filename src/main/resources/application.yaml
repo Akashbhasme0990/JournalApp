@@ -1,4 +1,11 @@
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
   data:
     mongodb:
       uri: mongodb+srv://akashbhasme09:Akash%402001@cluster0.lxusx.mongodb.net/?retryWrites=true&w=majority&appName=cluster0
@@ -11,8 +18,9 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: akashbhasme011@gmail.com
-    password: wtyi tsms nnjk pwwk
+    username: akashbhasme09@gmail.com
+#    password: wtyi tsms nnjk pwwk
+    password: zsdi fqst qxqf tthb
     properties:
       mail:
         smtp:
@@ -21,7 +29,7 @@ spring:
             enable: true
 
 server:
-  port: 6060
+  port: 6061
 
 logging:
   level:

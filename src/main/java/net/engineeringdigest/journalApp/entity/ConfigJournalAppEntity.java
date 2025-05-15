@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Getter
+
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +15,10 @@ public class ConfigJournalAppEntity {
     private String key;
     private String value;
 
+    public String getKey() {
+        return key;
+    }
+    public String getValue(){
+        return value;
+    }
 }

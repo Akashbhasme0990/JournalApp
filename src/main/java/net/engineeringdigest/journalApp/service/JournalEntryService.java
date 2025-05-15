@@ -34,9 +34,9 @@ public class JournalEntryService {
             throw new RuntimeException("ERROR OCCURED WHILE SAVING ENTRY");
         }
     }
-    public void saveEntry(JournalEntry journalEntry) {
-        journalEntryRepository.save(journalEntry);
-    }
+//    public void saveEntry(JournalEntry journalEntry) {
+//        journalEntryRepository.save(journalEntry);
+//    }
 
     public List<JournalEntry> getJournalEntries() {
         return journalEntryRepository.findAll();

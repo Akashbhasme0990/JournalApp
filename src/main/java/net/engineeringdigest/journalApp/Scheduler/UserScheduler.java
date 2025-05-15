@@ -25,19 +25,21 @@ public class UserScheduler {
     private UserRepositoryImpl userRepository;
     @Autowired
     private AppCache appCache;
-    @Scheduled(cron ="0 0 9 * * Sun")
+
+    @Scheduled(cron = "0 0 9 * * Sun")
     public void fetchUsers() {
-        List<User> users =userRepository.getUsersForSA();
+        List<User> users = userRepository.getUsersForSA();
         for (User user : users) {
-            List<JournalEntry> journalEntries= user.getJournalEntries();
+            List<JournalEntry> journalEntries = user.getJournalEntries();
             List<String> collect = journalEntries.stream().filter(x -> x.getDate().isAfter(LocalDateTime.now().minus(7, ChronoUnit.DAYS))).map(x -> x.getContent()).collect(Collectors.toList());
-            String entry = String.join(" ",collect);
+            String entry = String.join(" ", collect);
             String sentiment = sentimentAnalysisService.getSentiments(entry);
-            emailService.sendEmail(user.getEmail(),"sentiment for last 7 days",sentiment);
+            emailService.sendEmail(user.getEmail(), "sentiment for last 7 days", sentiment);
         }
     }
+
     @Scheduled(cron = "0 */10 * * * *")
-    public void clearAppcache(){
+    public void clearAppcache() {
         appCache.init();
     }
 

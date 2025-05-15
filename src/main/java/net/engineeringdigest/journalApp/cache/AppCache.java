@@ -20,7 +20,7 @@ public class AppCache {
         List<ConfigJournalAppEntity> all  = weatherRepository.findAll();
         APP_CACHE = new HashMap<>();
         for (ConfigJournalAppEntity app : all) {
-            APP_CACHE.put(app.getKey(), app.getValue() );
+            APP_CACHE.put(app.getKey(),app.getValue());
         }
     }
 }

@@ -18,7 +18,6 @@ public class UserRepositoryImpl {
 //        query.addCriteria(Criteria.where("email").exists(true));
         query.addCriteria(Criteria.where("email").regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"));
         List<User>  users= mongoTemplate.find(query, User.class);
-
         return users;
     }
 }

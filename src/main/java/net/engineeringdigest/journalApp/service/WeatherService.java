@@ -11,15 +11,18 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class WeatherService {
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
     @Value("${weather.api.key}")
     private String apiKey;
-    @Autowired
-    private AppCache appCache;
+    private final AppCache appCache;
 
-    @Autowired
-    private RedisService redisService;
+    private final RedisService redisService;
+
+    public WeatherService(RedisService redisService, AppCache appCache, RestTemplate restTemplate) {
+        this.redisService = redisService;
+        this.appCache = appCache;
+        this.restTemplate = restTemplate;
+    }
 
     public WeatherResponse getWeatherResponse(String city){
         WeatherResponse weatherResponse = redisService.get("weather_of_" + city, WeatherResponse.class);

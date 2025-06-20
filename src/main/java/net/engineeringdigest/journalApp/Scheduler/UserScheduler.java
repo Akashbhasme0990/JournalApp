@@ -37,11 +37,9 @@ public class UserScheduler {
             emailService.sendEmail(user.getEmail(), "sentiment for last 7 days", sentiment);
         }
     }
-
     @Scheduled(cron = "0 */10 * * * *")
     public void clearAppcache() {
         appCache.init();
     }
-
 
 }

@@ -4,8 +4,10 @@ import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -44,6 +46,30 @@ public class JournalEntry {
         return content;
     }
 
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
+    }
+
     public LocalDateTime getDate() {
         return date;
     }
@@ -52,4 +78,8 @@ public class JournalEntry {
     private String title;
     private String content;
     private LocalDateTime date;
+    private String imageName;
+    private String imageType;
+    @Field("imageData")
+    private byte[] imageData;
 }

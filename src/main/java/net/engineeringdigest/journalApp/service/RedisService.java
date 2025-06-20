@@ -11,23 +11,37 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.TimeUnit;
 
 @Service
-@Slf4j
 public class RedisService {
 
     private static final Logger log = LoggerFactory.getLogger(RedisService.class);
     @Autowired
     private RedisTemplate redisTemplate;
 
+//    public <T> T get(String key, Class<T> entityClass) {
+//        try {
+//            Object o = redisTemplate.opsForValue().get(key);
+//            ObjectMapper mapper = new ObjectMapper();
+//            assert o != null;
+//            return mapper.readValue(o.toString(), entityClass);
+//        } catch (Exception e) {
+//            log.error("Exception ", e);
+//            return null;
+//        }
+//    }
     public <T> T get(String key, Class<T> entityClass) {
         try {
             Object o = redisTemplate.opsForValue().get(key);
+            if (o == null) {
+                return null;
+            }
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(o.toString(), entityClass);
         } catch (Exception e) {
-            log.error("Exception ", e);
+            log.error("Exception in RedisService.get() for key {}: {}", key, e.getMessage(), e);
             return null;
         }
     }
+
 
     public void set(String key, Object o, Long ttl) {
         try {

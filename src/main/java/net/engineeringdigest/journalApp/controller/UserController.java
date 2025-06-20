@@ -25,9 +25,6 @@ public class UserController {
     private UserRepository userRepository;
 
     @Autowired
-    private RestTemplate restTemplate;
-
-    @Autowired
     private WeatherService weatherService;
     @Autowired
     private UserRepositoryImpl userRepositoryImpl;
